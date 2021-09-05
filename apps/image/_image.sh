@@ -9,13 +9,14 @@
 # BAD INPUT
 badinput() {
   echo
-  read -p '⛔️ ERROR - BAD INPUT! | PRESS [ENTER] ' typed </dev/tty
+  read -p '⚠️ ERROR - Bad input | PRESS [ENTER] ' typed </dev/tty
   question1
 }
 
 # FUNCTION - ONE
 question1() {
-
+declare YELLOW='\033[0;33m'
+declare NC='\033[0m'
   # Recall Program
   image=$(cat /tmp/program_var)
 
@@ -26,7 +27,7 @@ question1() {
   tee <<-EOF
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🌵  Multi Image Selector - $image
+💼  Multi image selector - ${YELLOW}\"$image\"${NC}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 EOF
@@ -38,7 +39,7 @@ EOF
     count=$((count + 1))
   done </opt/coreapps/apps/image/$image
   echo ""
-  read -p '🚀  Type Number | PRESS [ENTER]: ' typed </dev/tty
+  read -p '💬  Type Number | PRESS [ENTER]: ' typed </dev/tty
 
   if [[ "$typed" -ge "1" && "$typed" -lt "$count" ]]; then
     mkdir -p /var/plexguide/image
